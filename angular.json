@@ -1,0 +1,236 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 7,
+  "newProjectRoot": "",
+  "projects": {
+    "amc-starter": {
+      "root": "apps/amc-starter/",
+      "sourceRoot": "apps/amc-starter/src",
+      "projectType": "application",
+      "prefix": "apps/amc-starter",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/amc-starter",
+            "index": "apps/amc-starter/src/index.html",
+            "main": "apps/amc-starter/src/main.ts",
+            "polyfills": "apps/amc-starter/src/polyfills.ts",
+            "tsConfig": "apps/amc-starter/tsconfig.app.json",
+            "assets": [
+              "apps/amc-starter/src/favicon.ico",
+              "apps/amc-starter/src/assets"
+            ],
+            "styles": [
+              {
+                "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+              },
+              "apps/amc-starter/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/amc-starter/src/environments/environment.ts",
+                  "with": "apps/amc-starter/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "amc-starter:build",
+            "host": "localhost",
+            "baseHref": "/amc-starter/",
+            "deployUrl": "/amc-starter/"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "amc-starter:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "amc-starter:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/amc-starter/tsconfig.app.json",
+              "apps/amc-starter/tsconfig.spec.json",
+              "apps/amc-starter/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/amc-starter/jest.config.js",
+            "tsConfig": "apps/amc-starter/tsconfig.spec.json",
+            "setupFile": "apps/amc-starter/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "jest-utils": {
+      "root": "libs/jest-utils",
+      "sourceRoot": "libs/jest-utils/src",
+      "projectType": "library",
+      "prefix": "libs/jest-utils",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/jest-utils/tsconfig.lib.json",
+              "libs/jest-utils/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/jest-utils/jest.config.js",
+            "tsConfig": "libs/jest-utils/tsconfig.spec.json",
+            "setupFile": "libs/jest-utils/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "amc-voter": {
+      "root": "apps/amc-voter/",
+      "sourceRoot": "apps/amc-voter/src",
+      "projectType": "application",
+      "prefix": "amc",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/amc-voter",
+            "index": "apps/amc-voter/src/index.html",
+            "main": "apps/amc-voter/src/main.ts",
+            "polyfills": "apps/amc-voter/src/polyfills.ts",
+            "tsConfig": "apps/amc-voter/tsconfig.app.json",
+            "assets": [
+              "apps/amc-voter/src/favicon.ico",
+              "apps/amc-voter/src/assets"
+            ],
+            "styles": [
+              "apps/amc-voter/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/amc-voter/src/environments/environment.ts",
+                  "with": "apps/amc-voter/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "amc-voter:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "amc-voter:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "amc-voter:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/amc-voter/tsconfig.app.json",
+              "apps/amc-voter/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "amc-voter-e2e": {
+      "root": "apps/amc-voter-e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/amc-voter-e2e/protractor.conf.js",
+            "devServerTarget": "amc-voter:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "amc-voter:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/amc-voter-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false,
+      "versionMismatch": false
+    },
+    "defaultCollection": "@nrwl/schematics",
+    "packageManager": "yarn"
+  },
+  "defaultProject": "amc-starter"
+}

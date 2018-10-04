@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+yarn rest-api &
+yarn serve -- -o
