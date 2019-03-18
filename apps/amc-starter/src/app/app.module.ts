@@ -6,9 +6,12 @@ import { ContactsMaterialModule } from './contacts-material.module';
 
 import { ContactsAppComponent } from './app.component';
 import { ContactsNgRxModule } from './contacts-ngrx.module';
+import { ContactsService } from './contacts.service';
+import { ContactsListComponent } from './contacts-list/contacts-list.component';
 
 @NgModule({
-  declarations: [ContactsAppComponent],
+  declarations: [ContactsAppComponent, ContactsListComponent],
+  providers: [ContactsService],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
