@@ -11,9 +11,11 @@ import { ContactsListComponent } from './contacts-list/contacts-list.component';
 import { RouterModule } from '@angular/router';
 import { APP_ROUTES } from './app.routes';
 import { ContactsDetailComponent } from './contacts-detail/contacts-detail.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ContactsEditorComponent } from './contacts-editor/contacts-editor.component';
 
 @NgModule({
-  declarations: [ContactsAppComponent, ContactsListComponent, ContactsDetailComponent],
+  declarations: [ContactsAppComponent, ContactsListComponent, ContactsDetailComponent, ContactsEditorComponent],
   providers: [ContactsService],
   imports: [
     BrowserModule,
@@ -21,7 +23,8 @@ import { ContactsDetailComponent } from './contacts-detail/contacts-detail.compo
     ContactsMaterialModule,
     ContactsNgRxModule,
     FlexLayoutModule,
-    RouterModule.forRoot(APP_ROUTES)
+    RouterModule.forRoot(APP_ROUTES),
+    HttpClientModule
   ],
   bootstrap: [ContactsAppComponent]
 })
