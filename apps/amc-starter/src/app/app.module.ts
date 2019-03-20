@@ -13,10 +13,12 @@ import { APP_ROUTES } from './app.routes';
 import { ContactsDetailComponent } from './contacts-detail/contacts-detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ContactsEditorComponent } from './contacts-editor/contacts-editor.component';
+import { API_ENDPOINT } from './app.token';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ContactsAppComponent, ContactsListComponent, ContactsDetailComponent, ContactsEditorComponent],
-  providers: [ContactsService],
+  providers: [{provide: API_ENDPOINT, useValue: 'http://localhost:4201/api'}, ContactsService],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -24,7 +26,8 @@ import { ContactsEditorComponent } from './contacts-editor/contacts-editor.compo
     ContactsNgRxModule,
     FlexLayoutModule,
     RouterModule.forRoot(APP_ROUTES),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   bootstrap: [ContactsAppComponent]
 })

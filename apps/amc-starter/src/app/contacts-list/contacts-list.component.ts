@@ -10,9 +10,9 @@ import { Observable } from 'rxjs';
 })
 export class ContactsListComponent implements OnInit {
 
-  contacts: Array<Contact>;
+  contacts$: Observable<Array<Contact>>;
   constructor(private  contactsService: ContactsService) {
-    this.contactsService.getContacts().subscribe(contacts => this.contacts = contacts);
+    this.contacts$ = this.contactsService.getContacts();
   }
   ngOnInit() {
   }
