@@ -16,12 +16,9 @@ export class ContactsListComponent implements OnInit {
   constructor(private  contactsService: ContactsService) {}
   ngOnInit() {
 
-    const contactSearch$ = this.terms$.pipe(
-      debounceTime(400),
-      distinctUntilChanged(),
-      switchMap(term => this.contactsService.search(term))
+    this.contacts$ = merge(
+      this.contactsService.search(this.terms$),
+      this.contactsService.getContacts()
     );
-    const allContact$ = this.contactsService.getContacts().pipe(takeUntil(contactSearch$));
-    this.contacts$ = merge(contactSearch$, allContact$);
   }
 }

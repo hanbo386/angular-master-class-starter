@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { Contact } from './models/contact';
-import {map} from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { API_ENDPOINT } from './app.token';
@@ -29,8 +29,16 @@ export class ContactsService {
     return this.http.put<ContactResponse>(url, contact).pipe(map(data => data.item));
   }
 
-  search(term: string): Observable<Array<Contact>> {
+  rawSearch(term: string): Observable<Array<Contact>> {
     const searchUrl = `${this.apiEndpoint}/search?text=${term}`;
     return this.http.get<ContactsResponse>(searchUrl).pipe(map(data => data.items));
+  }
+
+  search(terms: Observable<string>, debounceMs = 400): Observable<Array<Contact>> {
+    return terms.pipe(
+      debounceTime(debounceMs),
+      distinctUntilChanged(),
+      switchMap(term => this.rawSearch(<string>term))
+    );
   }
 }
