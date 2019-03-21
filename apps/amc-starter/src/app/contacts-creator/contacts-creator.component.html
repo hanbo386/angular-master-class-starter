@@ -1,0 +1,71 @@
+<div class="trm-contacts-creator">
+  <form #form="ngForm" (ngSubmit)="save(form.value)" novalidate>
+    <mat-card>
+      <mat-card-title-group>
+        <img mat-card-md-image alt="Placeholder image" src="/amc-starter/assets/images/placeholder.png">
+        <mat-card-title></mat-card-title>
+        <mat-card-subtitle></mat-card-subtitle>
+      </mat-card-title-group>
+      <mat-card-content>
+        <div fxLayout="column">
+          <mat-form-field fxFlex [color]="name.errors ? 'warn' : 'primary'">
+            <input matInput placeholder="Name" name="name" ngModel required minlength="3" #name="ngModel">
+            <mat-hint align="end" *ngIf="!name.valid && !name.pristine">
+              <ng-container *ngIf="name.errors?.required">
+                this field is required
+              </ng-container>
+              <ng-container *ngIf="name.errors?.minlength">
+                A name must have at least {{name.errors.minlength.requiredLength}} characters
+              </ng-container>
+            </mat-hint>
+          </mat-form-field>
+          <mat-form-field fxFlex [color]="email.errors ? 'warn' : 'primary'">
+            <input matInput placeholder="Email" name="email" ngModel #email="ngModel" [(ngModel)]="contact.email" trmValidateEmail>
+            <mat-hint align="end" *ngIf="!email.valid && !email.pristine && !email.untouched">
+              <ng-container *ngIf="email.errors?.validateEmail">
+                Please enter a valid email address
+              </ng-container>
+            </mat-hint>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <input matInput placeholder="Birthday" name="birthday" type="date" ngModel>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <input matInput placeholder="Phone" name="phone" ngModel>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <input matInput placeholder="Website" name="website" ngModel>
+          </mat-form-field>
+          <mat-radio-group name="gender" ngModel>
+            <mat-radio-button>
+              Male
+            </mat-radio-button>
+            <mat-radio-button>
+              Female
+            </mat-radio-button>
+          </mat-radio-group>
+          <fieldset fxLayout="column">
+            <legend>Address</legend>
+            <mat-form-field fxFlex>
+              <input matInput placeholder="Street" name="street" ngModel>
+            </mat-form-field>
+            <mat-form-field fxFlex>
+              <input matInput placeholder="Zip" name="zip" ngModel>
+            </mat-form-field>
+            <mat-form-field fxFlex>
+              <input matInput placeholder="City" name="city" ngModel>
+            </mat-form-field>
+            <mat-select placeholder="Country" name="country" ngModel>
+              <mat-option>New Zealand</mat-option>
+              <mat-option>Old Zealand</mat-option>
+            </mat-select>
+          </fieldset>
+        </div>
+      </mat-card-content>
+      <mat-card-actions fxLayout fxLayoutAlign="center center">
+        <button [disabled]="!form.valid"  mat-button type="submit">Save</button>
+        <a mat-button title="Cancel creating new contact" (click)="cancel()">Cancel</a>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

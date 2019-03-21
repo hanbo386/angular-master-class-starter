@@ -10,7 +10,7 @@ import { ContactsService } from '../contacts.service';
 })
 export class ContactsEditorComponent implements OnInit {
 
-  contact: Contact = <Contact>{address:{}};
+  contact: Contact = <Contact>{address: {}};
 
   constructor(private router: Router, private contactsService: ContactsService, private route: ActivatedRoute) { }
   ngOnInit() {

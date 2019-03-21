@@ -29,6 +29,11 @@ export class ContactsService {
     return this.http.put<ContactResponse>(url, contact).pipe(map(data => data.item));
   }
 
+  //TODO-dig into this post and put http method to figure out how this method return an observable
+  addContact(contact: Contact): Observable<Contact> {
+    return this.http.post<ContactResponse>(`${this.apiEndpoint}/contacts`, contact).pipe(map(data => data.item));
+  }
+
   rawSearch(term: string): Observable<Array<Contact>> {
     const searchUrl = `${this.apiEndpoint}/search?text=${term}`;
     return this.http.get<ContactsResponse>(searchUrl).pipe(map(data => data.items));
