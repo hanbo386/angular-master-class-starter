@@ -1,4 +1,3 @@
-<script src="../../../../../../../../../Users/bhan/Angular/trademe-angular-master-class/apps/amc-starter/src/app/contacts-editor/contacts-editor.component.ts"></script>
 <div class="trm-contacts-detail">
   <mat-card>
     <mat-card-title-group class="fullBleed">
@@ -23,8 +22,8 @@
       </dl>
     </mat-card-content>
     <mat-card-actions fxLayout fxLayoutAlign="center center">
-      <a mat-button [routerLink]="['edit']" title="Edit {{contact?.name}}">Edit</a>
-      <a mat-button title="Go back to list" [routerLink]="['/']">Go Back</a>
+      <a mat-button (click)="edit.emit(contact)" title="Edit {{contact?.name}}">Edit</a>
+      <a mat-button title="Go back to list" (click)="back.emit()">Go Back</a>
     </mat-card-actions>
   </mat-card>
 </div>

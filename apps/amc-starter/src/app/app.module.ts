@@ -18,6 +18,8 @@ import { FormsModule } from '@angular/forms';
 import { ContactsCreatorComponent } from './contacts-creator/contacts-creator.component';
 import { EmailValidatorDirective } from './email-validator.directive';
 import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-detail-view.component';
+import { TabComponent } from './tabs/tab/tab.component';
+import { TabsComponent } from './tabs/tabs/tabs.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-det
     ContactsEditorComponent,
     ContactsCreatorComponent,
     EmailValidatorDirective,
-    ContactsDetailViewComponent
+    ContactsDetailViewComponent,
+    TabComponent,
+    TabsComponent
   ],
   providers: [{provide: API_ENDPOINT, useValue: 'http://localhost:4201/api'}, ContactsService],
   imports: [

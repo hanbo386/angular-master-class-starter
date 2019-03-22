@@ -1,3 +1,4 @@
-<p>
-  contacts-detail-view works!
-</p>
+<trm-contacts-detail [contact]="contact"
+                     (edit)="navigateToEditor($event)"
+                     (back)="navigateToList()">
+</trm-contacts-detail>
