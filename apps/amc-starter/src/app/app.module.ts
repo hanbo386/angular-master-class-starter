@@ -17,6 +17,7 @@ import { API_ENDPOINT } from './app.token';
 import { FormsModule } from '@angular/forms';
 import { ContactsCreatorComponent } from './contacts-creator/contacts-creator.component';
 import { EmailValidatorDirective } from './email-validator.directive';
+import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-detail-view.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { EmailValidatorDirective } from './email-validator.directive';
     ContactsDetailComponent,
     ContactsEditorComponent,
     ContactsCreatorComponent,
-    EmailValidatorDirective
+    EmailValidatorDirective,
+    ContactsDetailViewComponent
   ],
   providers: [{provide: API_ENDPOINT, useValue: 'http://localhost:4201/api'}, ContactsService],
   imports: [
