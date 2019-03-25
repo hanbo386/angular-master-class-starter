@@ -5,14 +5,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { API_ENDPOINT } from './app.token';
 
-interface ContactResponse {item: Contact}
-interface ContactsResponse {items: Contact[]}
+interface ContactResponse { item: Contact; }
+interface ContactsResponse { items: Contact[]; }
 
 @Injectable()
 export class ContactsService {
 
   contacts: Array<Contact>;
-
+  // apiEndpoint = 
   constructor(private http: HttpClient, @Inject(API_ENDPOINT) private apiEndpoint) {
   }
 

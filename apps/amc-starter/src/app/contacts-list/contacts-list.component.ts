@@ -7,6 +7,9 @@ import { EventBusService } from '../event-bus-service';
 
 @Component({
   selector: 'trm-contacts-list',
+  // providers: [
+  //   ContactsService,
+  // ],
   templateUrl: './contacts-list.component.html',
   styleUrls: ['./contacts-list.component.css']
 })
@@ -20,6 +23,7 @@ export class ContactsListComponent implements OnInit {
     this.contacts$ = merge(
       this.contactsService.search(this.terms$),
       this.contactsService.getContacts()
-    ).pipe(tap(list => this.publisher.emit('appTitleChange', `${list.length} Contacts`)));
+    );
+    // .pipe(tap(list => this.publisher.emit('appTitleChange', `${list.length} Contacts`)));
   }
 }

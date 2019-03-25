@@ -1,3 +1,4 @@
+import { EventBusService } from './event-bus-service';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -20,30 +21,40 @@ import { EmailValidatorDirective } from './email-validator.directive';
 import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-detail-view.component';
 import { TabComponent } from './tabs/tab/tab.component';
 import { TabsComponent } from './tabs/tabs/tabs.component';
+import { ContactsDashboardComponent } from './contacts-dashboard/contacts-dashboard.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
-  declarations: [
-    ContactsAppComponent,
-    ContactsListComponent,
-    ContactsDetailComponent,
-    ContactsEditorComponent,
-    ContactsCreatorComponent,
-    EmailValidatorDirective,
-    ContactsDetailViewComponent,
-    TabComponent,
-    TabsComponent
-  ],
-  providers: [{provide: API_ENDPOINT, useValue: 'http://localhost:4201/api'}, ContactsService],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    ContactsMaterialModule,
-    ContactsNgRxModule,
-    FlexLayoutModule,
-    RouterModule.forRoot(APP_ROUTES),
-    HttpClientModule,
-    FormsModule
-  ],
-  bootstrap: [ContactsAppComponent]
+   declarations: [
+      ContactsAppComponent,
+      ContactsListComponent,
+      ContactsDetailComponent,
+      ContactsEditorComponent,
+      ContactsCreatorComponent,
+      EmailValidatorDirective,
+      ContactsDetailViewComponent,
+      TabComponent,
+      TabsComponent,
+      ContactsDashboardComponent,
+      AboutComponent
+   ],
+   providers: [
+      {provide: API_ENDPOINT, useValue: 'http://localhost:4201/api'},
+      ContactsService,
+      EventBusService
+   ],
+   imports: [
+      BrowserModule,
+      BrowserAnimationsModule,
+      ContactsMaterialModule,
+      ContactsNgRxModule,
+      FlexLayoutModule,
+      RouterModule.forRoot(APP_ROUTES),
+      HttpClientModule,
+      FormsModule
+   ],
+   bootstrap: [
+      ContactsAppComponent
+   ]
 })
 export class ContactsModule {}

@@ -3,6 +3,7 @@ import { Contact } from '../models/contact';
 import { ContactsService } from '../contacts.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventBusService } from '../event-bus-service';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'trm-contacts-detail-view',
@@ -20,10 +21,16 @@ export class ContactsDetailViewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.contactsService
-        .getContact(this.route.snapshot.params['id'])
-        .subscribe(contact => this.contact = contact);
-    this.publisher.emit('appTitleChange', `${this.contact.name}`);
+    // We need to subscribe to params changes because this component is
+    // reused when jumpling between contacts. Hence ngOnInit is called only once
+    this.route.paramMap
+      .pipe(switchMap(paramMap => this.contactsService.getContact(paramMap.get('id'))))
+      .subscribe(contact => { this.contact = contact; this.publisher.emit('appTitleChange', `${this.contact.name}`); });
+    // console.log('Inited detail page');
+    // this.contactsService
+    //     .getContact(this.route.snapshot.params['id'])
+    //     .subscribe(contact => this.contact = contact);
+    // this.publisher.emit('appTitleChange', `${this.contact.name}`);
   }
 
   navigateToList() {
