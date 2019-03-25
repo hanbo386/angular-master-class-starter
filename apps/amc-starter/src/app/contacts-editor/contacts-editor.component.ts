@@ -11,6 +11,7 @@ import { ContactsService } from '../contacts.service';
 export class ContactsEditorComponent implements OnInit {
 
   contact: Contact = <Contact>{address: {}};
+  warnOnClosing = true;
 
   constructor(private router: Router, private contactsService: ContactsService, private route: ActivatedRoute) { }
   ngOnInit() {

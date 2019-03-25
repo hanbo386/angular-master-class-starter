@@ -24,6 +24,11 @@ import { TabsComponent } from './tabs/tabs/tabs.component';
 import { ContactsDashboardComponent } from './contacts-dashboard/contacts-dashboard.component';
 import { AboutComponent } from './about/about.component';
 
+export function confirmNavigationGuard(component) {
+   const question = 'Navigate away without saving?';
+   return !component.warnOnClosing || window.confirm(question);
+}
+
 @NgModule({
    declarations: [
       ContactsAppComponent,
@@ -39,7 +44,8 @@ import { AboutComponent } from './about/about.component';
       AboutComponent
    ],
    providers: [
-      {provide: API_ENDPOINT, useValue: 'http://localhost:4201/api'},
+      { provide: API_ENDPOINT, useValue: 'http://localhost:4201/api' },
+      { provide: 'ConfirmNavigationGuard', useValue: confirmNavigationGuard },
       ContactsService,
       EventBusService
    ],
