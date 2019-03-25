@@ -1,6 +1,6 @@
 {
   "name": "angular-master-class-app",
-  "version": "7.x",
+  "version": "",
   "license": "thoughtram Training Material License (TTML 1.0)",
   "scripts": {
     "ng": "ng",
