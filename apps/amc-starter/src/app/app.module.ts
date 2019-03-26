@@ -23,11 +23,13 @@ import { TabComponent } from './tabs/tab/tab.component';
 import { TabsComponent } from './tabs/tabs/tabs.component';
 import { ContactsDashboardComponent } from './contacts-dashboard/contacts-dashboard.component';
 import { AboutComponent } from './about/about.component';
+import { ConfirmDeactivateDialogComponent } from './confirm-deactivate-dialog/confirm-deactivate-dialog.component';
+import { CanDeactiveContactsEditorGuard } from './CanDeactiveContactsEditorGuard';
 
-export function confirmNavigationGuard(component) {
-   const question = 'Navigate away without saving?';
-   return !component.warnOnClosing || window.confirm(question);
-}
+// export function confirmNavigationGuard(component) {
+//    const question = 'Navigate away without saving?';
+//    return !component.warnOnClosing || window.confirm(question);
+// }
 
 @NgModule({
    declarations: [
@@ -41,13 +43,16 @@ export function confirmNavigationGuard(component) {
       TabComponent,
       TabsComponent,
       ContactsDashboardComponent,
-      AboutComponent
+      AboutComponent,
+      ConfirmDeactivateDialogComponent,
    ],
+   entryComponents: [ConfirmDeactivateDialogComponent],
    providers: [
       { provide: API_ENDPOINT, useValue: 'http://localhost:4201/api' },
-      { provide: 'ConfirmNavigationGuard', useValue: confirmNavigationGuard },
+      // { provide: 'ConfirmNavigationGuard', useValue: confirmNavigationGuard },
       ContactsService,
-      EventBusService
+      EventBusService,
+      CanDeactiveContactsEditorGuard
    ],
    imports: [
       BrowserModule,

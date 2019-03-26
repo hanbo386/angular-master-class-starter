@@ -1,3 +1,4 @@
+import { CanDeactiveContactsEditorGuard } from './CanDeactiveContactsEditorGuard';
 import { AboutComponent } from './about/about.component';
 import { Routes } from '@angular/router';
 import { ContactsEditorComponent } from './contacts-editor/contacts-editor.component';
@@ -14,9 +15,9 @@ export const APP_ROUTES: Routes = [
       {path: 'contact/new', component: ContactsCreatorComponent},
       {path: 'contact/:id', component: ContactsDetailViewComponent},
       {
-        path: 'contact/:id/edit', 
+        path: 'contact/:id/edit',
         component: ContactsEditorComponent,
-        canDeactivate: ['ConfirmNavigationGuard']
+        canDeactivate: [CanDeactiveContactsEditorGuard]
       }
     ]
   },
