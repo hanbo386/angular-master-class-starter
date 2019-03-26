@@ -31,5 +31,6 @@ export const APP_ROUTES: Routes = [
       }
     ]
   },
-  {path: 'about', component: AboutComponent}
+  { path: 'about', loadChildren: './about/about.module#AboutModule' },
+  { path: '**', redirectTo: 'amc-starter' }
 ];
