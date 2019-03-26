@@ -5,6 +5,7 @@ import { ContactsEditorComponent } from './contacts-editor/contacts-editor.compo
 import { ContactsCreatorComponent } from './contacts-creator/contacts-creator.component';
 import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-detail-view.component';
 import { ContactsDashboardComponent } from './contacts-dashboard/contacts-dashboard.component';
+import { ContactsResolver } from './shared/contacts.resolver';
 
 export const APP_ROUTES: Routes = [
   {
@@ -13,11 +14,20 @@ export const APP_ROUTES: Routes = [
     children: [
       {path: '', redirectTo: 'contact/0', pathMatch: 'full'},
       {path: 'contact/new', component: ContactsCreatorComponent},
-      {path: 'contact/:id', component: ContactsDetailViewComponent},
+      {
+        path: 'contact/:id',
+        component: ContactsDetailViewComponent,
+        resolve: {
+          contact: ContactsResolver
+        }
+      },
       {
         path: 'contact/:id/edit',
         component: ContactsEditorComponent,
-        canDeactivate: [CanDeactiveContactsEditorGuard]
+        canDeactivate: [CanDeactiveContactsEditorGuard],
+        resolve: {
+          contact: ContactsResolver
+        }
       }
     ]
   },

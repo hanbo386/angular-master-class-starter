@@ -25,6 +25,7 @@ import { ContactsDashboardComponent } from './contacts-dashboard/contacts-dashbo
 import { AboutComponent } from './about/about.component';
 import { ConfirmDeactivateDialogComponent } from './confirm-deactivate-dialog/confirm-deactivate-dialog.component';
 import { CanDeactiveContactsEditorGuard } from './CanDeactiveContactsEditorGuard';
+import { ContactsResolver } from './shared/contacts.resolver';
 
 // export function confirmNavigationGuard(component) {
 //    const question = 'Navigate away without saving?';
@@ -52,7 +53,8 @@ import { CanDeactiveContactsEditorGuard } from './CanDeactiveContactsEditorGuard
       // { provide: 'ConfirmNavigationGuard', useValue: confirmNavigationGuard },
       ContactsService,
       EventBusService,
-      CanDeactiveContactsEditorGuard
+      CanDeactiveContactsEditorGuard,
+      ContactsResolver
    ],
    imports: [
       BrowserModule,
