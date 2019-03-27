@@ -1,3 +1,4 @@
+import { FEATURE_KEY, contactsReducer, INITIAL_STATE } from './state/contacts/contacts.reducer';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
@@ -15,6 +16,9 @@ import { storeFreeze } from 'ngrx-store-freeze';
       { metaReducers: !environment.production ? [storeFreeze] : [] }
     ),
     EffectsModule.forRoot([]),
+    StoreModule.forFeature(FEATURE_KEY, contactsReducer, {
+      initialState: INITIAL_STATE
+    }),
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ]
 })

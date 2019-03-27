@@ -12,8 +12,8 @@ export const APP_ROUTES: Routes = [
     path: '',
     component: ContactsDashboardComponent,
     children: [
-      {path: '', redirectTo: 'contact/0', pathMatch: 'full'},
-      {path: 'contact/new', component: ContactsCreatorComponent},
+      { path: '', redirectTo: 'contact/0', pathMatch: 'full' },
+      { path: 'contact/new', component: ContactsCreatorComponent },
       {
         path: 'contact/:id',
         component: ContactsDetailViewComponent,
