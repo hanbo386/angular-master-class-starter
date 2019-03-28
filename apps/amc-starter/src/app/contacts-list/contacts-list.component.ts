@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { Contact } from '../models/contact';
 import { ContactsService } from '../contacts.service';
 import { merge, Observable, Subject } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { EventBusService } from '../event-bus-service';
 import { Store, select } from '@ngrx/store';
 import { LoadContactsSuccessAction } from '../state/contacts/contacts.actions';

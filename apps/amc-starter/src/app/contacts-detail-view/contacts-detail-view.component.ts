@@ -1,9 +1,10 @@
+import { ApplicationState } from './../app.state';
 import { Component, OnInit } from '@angular/core';
 import { Contact } from '../models/contact';
-import { ContactsService } from '../contacts.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventBusService } from '../event-bus-service';
 import { switchMap, map } from 'rxjs/operators';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'trm-contacts-detail-view',
@@ -14,7 +15,6 @@ export class ContactsDetailViewComponent implements OnInit {
   contact: Contact = <Contact>{ address: {} };
 
   constructor(
-    private contactsService: ContactsService,
     private route: ActivatedRoute,
     private router: Router,
     private publisher: EventBusService
@@ -28,7 +28,9 @@ export class ContactsDetailViewComponent implements OnInit {
     //   .subscribe(contact => { this.contact = contact; this.publisher.emit('appTitleChange', `${this.contact.name}`); });
     this.route.data
       .pipe(map(data => data['contact']))
-      .subscribe(contact => { this.contact = contact;  this.publisher.emit('appTitleChange', `${this.contact.name}`); });
+      .subscribe(contact => { this.contact = contact ? contact : <Contact>{ address: {} };  
+        this.publisher.emit('appTitleChange', `${this.contact.name}`); });
+
     // console.log('Inited detail page');
     // this.contactsService
     //     .getContact(this.route.snapshot.params['id'])
