@@ -1,3 +1,4 @@
+import { ContactExistsGuard } from './contact-exists.guard';
 import { CanDeactiveContactsEditorGuard } from './CanDeactiveContactsEditorGuard';
 import { Routes } from '@angular/router';
 import { ContactsEditorComponent } from './contacts-editor/contacts-editor.component';
@@ -11,11 +12,12 @@ export const APP_ROUTES: Routes = [
     path: '',
     component: ContactsDashboardComponent,
     children: [
-      // { path: '', redirectTo: 'contact/0', pathMatch: 'full' },
+      { path: '', redirectTo: 'contact/0', pathMatch: 'full' },
       { path: 'contact/new', component: ContactsCreatorComponent },
       {
         path: 'contact/:id',
         component: ContactsDetailViewComponent,
+        canActivate: [ContactExistsGuard],
         resolve: {
           contact: ContactsResolver
         }
@@ -24,6 +26,7 @@ export const APP_ROUTES: Routes = [
         path: 'contact/:id/edit',
         component: ContactsEditorComponent,
         canDeactivate: [CanDeactiveContactsEditorGuard],
+        canActivate: [ContactExistsGuard],
         resolve: {
           contact: ContactsResolver
         }

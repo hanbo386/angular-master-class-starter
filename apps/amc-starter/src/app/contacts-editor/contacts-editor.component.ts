@@ -31,9 +31,8 @@ export class ContactsEditorComponent implements OnInit {
     private route: ActivatedRoute,
     private store: Store<ApplicationState>) { }
   ngOnInit() {
-    const contactId = this.route.snapshot.paramMap.get('id');
-    this.store.dispatch(new SelectContactAction(+contactId));
-    console.log(this.store);
+    // const contactId = this.route.snapshot.paramMap.get('id');
+    // this.store.dispatch(new SelectContactAction(+contactId));
     // this.contactsService
     //   .getContact(this.route.snapshot.paramMap.get('id'))
     //   .subscribe(contact => this.contact = contact);

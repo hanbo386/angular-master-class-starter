@@ -25,6 +25,7 @@ import { ContactsDashboardComponent } from './contacts-dashboard/contacts-dashbo
 import { ConfirmDeactivateDialogComponent } from './confirm-deactivate-dialog/confirm-deactivate-dialog.component';
 import { CanDeactiveContactsEditorGuard } from './CanDeactiveContactsEditorGuard';
 import { ContactsResolver } from './shared/contacts.resolver';
+import { ContactExistsGuard } from './contact-exists.guard';
 
 @NgModule({
    declarations: [
@@ -46,6 +47,7 @@ import { ContactsResolver } from './shared/contacts.resolver';
       ContactsService,
       EventBusService,
       CanDeactiveContactsEditorGuard,
+      ContactExistsGuard,
       ContactsResolver
    ],
    imports: [

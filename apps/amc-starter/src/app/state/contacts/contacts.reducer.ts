@@ -5,10 +5,14 @@ export const FEATURE_KEY = 'contacts';
 export interface ContactsState {
     list: Array<Contact>;
     selectedContactId: number | null;
+    loaded: boolean;
+    error?: any;
 }
 export const INITIAL_STATE: ContactsState = {
     list: [],
-    selectedContactId: null
+    selectedContactId: null,
+    loaded: false,
+    error: null
 };
 
 export function contactsReducer(state: ContactsState = INITIAL_STATE, action: ContactsActions) {
@@ -31,6 +35,14 @@ export function contactsReducer(state: ContactsState = INITIAL_STATE, action: Co
             return {
                 ...state,
                 list: updatedList
+            };
+        case ContactsActionTypes.ADD_CONTACT:
+            const inStore = state.list.find(contact => {
+                return contact.id === action.payload.id;
+            });
+            return {
+                ...state,
+                list: !inStore ? [...state.list, action.payload] : state.list
             };
         default:
             return state;

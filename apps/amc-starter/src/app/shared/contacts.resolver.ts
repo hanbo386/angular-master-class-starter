@@ -12,7 +12,7 @@ export class ContactsResolver implements Resolve<Contact> {
 
     resolve(route: ActivatedRouteSnapshot) {
         let contact_: Contact;
-        this.store.dispatch(new SelectContactAction(+route.params['id']));
+        // this.store.dispatch(new SelectContactAction(+route.params['id']));
         this.store.pipe(
             select(state => {
                 const id = state.contacts.selectedContactId;
